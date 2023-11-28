@@ -1,0 +1,526 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Orquideas HN</title>
+<style type="text/css">
+<!--
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	background-color: #FFFFFF;
+	margin: 0;
+	padding: 0;
+	color: #000;
+	background-image: url(fondofinal.jpeg);
+}
+/* ~~ Selectores de elemento/etiqueta ~~ */
+ul, ol, dl { /* Debido a las diferencias existentes entre los navegadores, es recomendable no añadir relleno ni márgenes en las listas. Para lograr coherencia, puede especificar las cantidades deseadas aquí o en los elementos de lista (LI, DT, DD) que contienen. Recuerde que lo que haga aquí se aplicará en cascada en la lista .nav, a no ser que escriba un selector más específico. */
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	 /* la eliminación del margen superior resuelve un problema que origina que los márgenes escapen del bloque contenedor. El margen inferior restante lo mantendrá separado de los elementos de que le sigan.  */
+	padding-right: 15px;
+	padding-left: 15px; /* la adición de relleno a los lados del elemento dentro de los bloques, en lugar de en los elementos del bloque propiamente dicho, elimina todas las matemáticas de modelo de cuadro. Un bloque anidado con relleno lateral también puede usarse como método alternativo. */
+	color: #000;
+	font-size: 100%;
+}
+a img { /* este selector elimina el borde azul predeterminado que se muestra en algunos navegadores alrededor de una imagen cuando está rodeada por un vínculo */
+	border: none;
+}
+/* ~~ La aplicación de estilo a los vínculos del sitio debe permanecer en este orden (incluido el grupo de selectores que crea el efecto hover -paso por encima-). ~~ */
+a:link {
+	color: #42413C;
+	text-decoration: underline; /* a no ser que aplique estilos a los vínculos para que tengan un aspecto muy exclusivo, es recomendable proporcionar subrayados para facilitar una identificación visual rápida */
+}
+a:visited {
+	color: #CC9999;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus { /* este grupo de selectores proporcionará a un usuario que navegue mediante el teclado la misma experiencia de hover (paso por encima) que experimenta un usuario que emplea un ratón. */
+	text-decoration: none;
+}
+/* ~~ Este contenedor de anchura fija rodea a todas las demás bloques ~~ */
+.container {
+	width: 960px;
+	background-color: #FFFFFF;
+	margin: 0 auto; /* el valor automático de los lados, unido a la anchura, centra el diseño  */
+}
+/* ~~ No se asigna una anchura al encabezado. Se extenderá por toda la anchura del diseño. ~~ */
+header {
+	background-color: #ADB96E;
+}
+/* ~~ Estas son las columnas para el diseño. ~~ 
+
+1) El relleno sólo se sitúa en la parte superior y/o inferior de los elementos del bloque. Los elementos situados dentro de estos bloques tienen relleno a los lados. Esto le ahorra las "matemáticas de modelo de cuadro". Recuerde que si añade relleno o borde lateral al bloque propiamente dicho, éste se añadirá a la anchura que defina para crear la anchura *total*. También puede optar por eliminar el relleno del elemento en el  bloque y colocar un segundo bloque dentro de éste sin anchura y el relleno necesario para el diseño deseado.
+
+2) No se asigna margen a las columnas, ya que todas ellas son flotantes. Si es preciso añadir un margen, evite colocarlo en el lado hacia el que se produce la flotación (por ejemplo: un margen derecho en un bloque configurado para flotar hacia la derecha). En muchas ocasiones, puede usarse relleno como alternativa. En el caso de bloques para los que deba incumplirse esta regla, deberá añadir una declaración "display:inline" a la regla del elemento del bloque para evitar un error que provoca que algunas versiones de Internet Explorer dupliquen el margen.
+
+3) Dado que las clases se pueden usar varias veces en un documento (y que también se pueden aplicar varias clases a un elemento), se ha asignado a las columnas nombres de clases en lugar de ID. Por ejemplo, dos bloques de barra lateral podrían apilarse si fuera necesario. Si lo prefiere, éstas pueden cambiarse a ID fácilmente, siempre y cuando las utilice una sola vez por documento.
+
+4) Si prefiere que la navegación esté a la izquierda en lugar de a la derecha, simplemente haga que estas columnas floten en dirección opuesta (todas a la izquierda en lugar de todas a la derecha) y éstas se representarán en orden inverso. No es necesario mover los bloques por el código fuente HTML.
+
+*/
+.sidebar1 {
+	float: right;
+	width: 180px;
+	background-color: #EADCAE;
+	padding-bottom: 10px;
+}
+.content {
+	padding: 10px 0;
+	width: 780px;
+	float: right;
+}
+
+/* ~~ Este selector agrupado da espacio a las listas del área de .content ~~ */
+.content ul, .content ol {
+	padding: 0 15px 15px 40px; /* este relleno reproduce en espejo el relleno derecho de la regla de encabezados y de párrafo incluida más arriba. El relleno se ha colocado en la parte inferior para que el espacio existente entre otros elementos de la lista y a la izquierda cree la sangría. Estos pueden ajustarse como se desee. */
+}
+
+/* ~~ Los estilos de lista de navegación (pueden eliminarse si opta por usar un menú desplegable predefinido como el de Spry) ~~ */
+ul.nav {
+	list-style: none; /* esto elimina el marcador de lista */
+	border-top: 1px solid #666; /* esto crea el borde superior de los vínculos (los demás se sitúan usando un borde inferior en el LI) */
+	margin-bottom: 15px; /* esto crea el espacio entre la navegación en el contenido situado debajo */
+}
+ul.nav li {
+	border-bottom: 1px solid #666; /* esto crea la separación de los botones  */
+}
+ul.nav a, ul.nav a:visited { /* al agrupar estos selectores, se asegurará de que los vínculos mantengan el aspecto de botón incluso después de haber sido visitados  */
+	padding: 5px 5px 5px 15px;
+	display: block; /* esto asigna propiedades de bloque al vínculo, lo que provoca que llene todo el LI que lo contiene. Esto provoca que toda el área reaccione a un clic de ratón. */
+	width: 160px;  /*esta anchura hace que se pueda hacer clic en todo el botón para IE6. Puede eliminarse si no es necesario proporcionar compatibilidad con IE6. Calcule la anchura adecuada restando el relleno de este vínculo de la anchura del contenedor de barra lateral. */
+	text-decoration: none;
+	background-color: #C6D580;
+}
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* esto cambia el color de fondo y del texto tanto para usuarios que naveguen con ratón como para los que lo hagan con teclado */
+	background-color: #ADB96E;
+	color: #FFF;
+}
+
+/* ~~ El pie de página ~~ */
+footer {
+	padding: 10px 0;
+	background-color: #CC99CC;
+	position: relative;/* esto da a IE6 el parámetro hasLayout para borrar correctamente */
+	clear: both; /* esta propiedad de borrado fuerza a .container a conocer dónde terminan las columnas y a contenerlas */
+}
+
+/*Compatibilidad con HTML 5: define nuevas etiquetas HTML 5 como display:block para que los navegadores sepan cómo procesar las etiquetas correctamente. */
+header, section, footer, aside, article, figure {
+	display: block;
+}
+.container .content section blockquote blockquote blockquote blockquote blockquote blockquote blockquote blockquote blockquote blockquote .nav strong {
+	font-family: Comic Sans MS, cursive;
+}
+h6 {
+	color: #000;
+}
+-->
+</style><!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]--></head>
+
+<body>
+
+<div class="container">
+  <header>
+    <a href="#"><img src="logo U.jpg" alt="Insertar logotipo aquí" width="962" height="712" id="Insert_logo" style="background-color: #C6D580; display:block;" align="baseline" /></a>
+  </header>
+  <div class="sidebar1">
+    <ul class="nav">
+        <li></li>
+        <li></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+    </ul>
+    <aside>
+      <p>Nos puedes encontrar en redes sociales como orquidea HN ahi tenemos todo nuestro catalago listo solo para que tu lo explores tambien nos puedes escribir al DM para preguntar sin compromiso los precios o las formas de envio.</p>
+</aside>
+  <!-- end .sidebar1 --></div> 
+  <article class="content">
+    <section>
+      <h2>Orquidea HN| Joyeria|Perfumeria.</h2>
+      <div>
+        <div dir="auto">
+          <p>Emprendedor</p>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <h1 dir="auto">Tienda online<br>
+        SRC-DNC 📍<br>
+        Más que un accesorio es tú personalidad al lucirla 💍<br>
+        📩 yeyamadrid20@gmail.com<br>
+        Deliveries throughout Honduras 🇭🇳</h1>
+      <p>&nbsp;</p>
+      <p><strong> Orquídea </strong> nace en el mundo de la joya el 13 de diciembre del año 2020 con el propósito de apoyar, vender y fortalecer  nuevas oportunidades para aquellas personas que desean emprender, ser dueños de negocios, revendedores y demás personas que cuenten con una gran pasión por las joyas o por si nada mas quieren tener una de nuestras joyas.</p>
+      <p>Así también tenemos la tarea de hablar con ellos por si les interesa nuestro negocio y poderlo ayudar a que le sea mas aficiente.</p>
+      <p>&nbsp;</p>
+      <p>A lo largo de nuestra trayectoria hemos logrado crear técnicas y estrategias que han revolucionado el mercado de la joyería actual, ya que contamos con una línea de productos extraidos de España que permiten la aceptación total en el mercado.</p>
+      <br>
+      <p>Desde nuestros inicios hasta la fecha, seguimos en el mercado, ya que nos enfocamos en crear una experiencia personalidad a cada uno de nuestros clientes, en base a sus necesidades y preferencias, creando de esta forma un flujo de atención en excelencia.</p>
+      <h4>MISIÓN      </h4>
+      <div>
+        <div>
+          <p>Generar oportunidades de emprendimiento a nivel nacional con modelos de negocio innovadores que enriquezcan y contribuyan a un desarrollo sustentable y socialmente responsable con diversas opciones para cada uno.</p>
+          <h4>VISIÓN</h4>
+          <p>Ser una organización eficaz y dinámica que pueda ofrecer una variada cartera de productos de alta calidad que se anticipen, superen las expectativas y necesidades de nuestros clientes, logrando un mayor alcance a nivel nacional.</p>
+          <p>&nbsp;</p>
+          <br>
+        </div>
+      </div>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <p><img src="Como-funciona-blockchain.png" width="520" height="420" alt="SAs" longdesc="file:///C|/Users/Keily/OneDrive/Documentos/Pagin web keily turcios/Como-funciona-blockchain.png"></p>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <p>&nbsp;</p>
+      <h3>VALORES DE LA MICROEMPRESA</h3>
+      <div id="col_pgh3">
+        <div>
+          <ul>
+            <li><strong>Personas:</strong> Una empresa son sus personas, estamos comprometidos y dedicados a dar a nuestro personal la mayor cantidad de oportunidades para alcanzar su potencial al máximo.</li>
+          </ul>
+          <p>&nbsp;</p>
+          <ul>
+            <li><strong>Lealtad:</strong> Estamos comprometidos con el corazón y la razón a cada uno de nuestros clientes y proveedores.</li>
+          </ul>
+          <p>&nbsp;</p>
+          <ul>
+            <li><strong>Integración:</strong> Trabajar de forma ética en base a nuestro negocio, todo lo que hacemos esta guiado por una línea moral que garantiza, el respeto, equidad y transparencia total.</li>
+          </ul>
+          <p>&nbsp;</p>
+          <ul>
+            <li><strong>Calidad:</strong> Nos enfocamos en buscar la excelencia tanto en atención y calidad de producto, nuestro cliente merece lo mejor.</li>
+          </ul>
+        </div>
+        <div></div>
+      </div>
+      <div id="col_pgh3">
+        <div></div>
+        <div>
+          <p>Somos una empresa que genera oportunidades de emprendimiento a nivel nacional, con una amplia gama de productos de alta calidad, comprometidos con nuestros clientes y empleados a proporcionar las mejores oportunidades en desarrollo, atención y calidad.</p>
+        </div>
+      </div>
+      <blockquote>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+      <p>&nbsp;</p>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  <blockquote>
+                    <blockquote>
+                      <blockquote>
+                        <blockquote>
+                          <blockquote>
+                            <h2 align="center"><strong>JOYAS</strong></h2>
+                            <p align="center">&nbsp;</p>
+                            <p align="center">&nbsp;</p>
+                          </blockquote>
+                        </blockquote>
+                      </blockquote>
+                    </blockquote>
+                    <p><img name="joyas" src="1 joyas.jpg" width="370" height="360" alt="">                
+                    </p>
+                  </blockquote>
+                </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <p>&nbsp;</p>
+      <p><strong>Aretes en forma de caracol de acero inoxidable buen tamaño y peso!</strong></p>
+      <p><strong>Puedes combinar con tu ropa favorita y te aseguro que te van hacer brillar </strong></p>
+      <p><strong>✨</strong></p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  <p><img src="aretes .jpg" width="370" height="360" alt="aretes" longdesc="aretes .jpg"></p>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <p>&nbsp;</p>
+      <p><strong>Par de aretes de acero inoxidable super hermosos para conbinar</strong>.</p>
+      <p>&nbsp;</p>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  <p><img src="pandora.jpg" width="370" height="360" alt="pandora" longdesc="pandora.jpg"></p>
+                  
+                  <blockquote>
+                    <p class="nav">&nbsp;</p>
+                  </blockquote>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      <p><strong>Pulsera tipo pandora de acero inoxidable, en acero inoxidable, incluyen todos sus charms (Dijes)</strong></p>
+      <p><strong><br>
+        Perfectos para regalitos de navidad 🌲</strong></p>
+      <p><strong><br>
+        Compra uno por Lps.450 y llévate la segunda a Lps.275<br>
+        🛍 PRECIO MAYOREO ESPECIAL</strong></p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <p><strong><img src="pulsera.jpg" width="370" height="360" alt="pulsera" longdesc="pulsera.jpg"></strong> </p>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <p><strong>Pulsera de osito de acero inoxidable bañada en oro.</strong></p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  <p><img src="anillos.jpg" width="370" height="360" alt="anillos" longdesc="anillos.jpg"></p>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+        <p>&nbsp;</p>
+        <p><strong>Tambien tenemos estos hermosos anillos anti estres perfectos para los que sufrimos de ansiedad.</strong></p>
+        <p><strong>Cada rosa o perlita da vuelta si tu lo mueves, se pretende modificar los malos hábitos, calmarnos y ayudar a que nos relajemos manteniendo los dedos ocupados</strong>.</p>
+        <p>&nbsp;</p>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  <p><img src="anillo serpiente.jpg" width="370" height="360" alt="serpiente" longdesc="anillo serpiente.jpg"></p>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+    </blockquote>
+      <p>&nbsp;</p>
+      <p><strong>Anillo ajustable 🐍con baño de oro acero inoxidable ✨✨</strong></p>
+      <p><strong>símbolo de sabiduría y renovación, por lo que esta joya podría utilizarse como un símbolo de estos valores.✨</strong><strong></strong></p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  <blockquote>
+                    <blockquote>
+                      <blockquote>
+                        <h1 align="center"><strong>PERFUMES</strong>                        </h1>
+                          <p align="center">&nbsp;</p>
+                        </blockquote>
+                        <p align="center">&nbsp;                      </p>
+                      </blockquote>
+                    </blockquote>
+                  </blockquote>
+                  <p align="center"><img src="perfume 1.jpg" width="370" height="360" alt="perfume 1" longdesc="perfume 1.jpg"></p>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <p>Fragancias de perfumería conocidas y exquisitas, tienen muy buena duración en la piel y excelente presentación. Ideal para tu emprendimiento.</p>
+      <p><strong>Fragancia</strong><br>
+      Una mezcla atemporal y femenina de bayas oscuras, jazmín de medianoche y ámbar rico.</p>
+      <p>&nbsp;</p>
+      <h1>Sobre este artículo      </h1>
+      <ul>
+        <li><strong>Perfume splash con natural hidratado para mujer</strong></li>
+        <li><strong>PARTIDO GARANTIZADO LADY OLOR</strong></li>
+        <li><strong>Manténgase hasta 18 horas en su cuerpo</strong></li>
+        <li><strong>Olor fuerte</strong></li>
+      </ul>
+      <p>&nbsp;</p>
+      <h5>&nbsp;</h5>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  <p><img src="PERFUME 2.jpg" width="370" height="360" alt="perfume 2" longdesc="PERFUME 2.jpg"></p>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <p>&nbsp;</p>
+      <h1>Sobre este artículo</h1>
+      <ul>
+        <li><strong>Perfume splash con natural hidratado para mujer</strong></li>
+        <li><strong>Manténgase hasta 18 horas en su cuerpo</strong></li>
+        <li><strong>spray natural</strong></li>
+        <li><strong>8.5 fl oz</strong></li>
+        <li><strong>8.45 onzas líquidas</strong></li>
+        <p>&nbsp;</p>
+      </ul>
+      <p> <strong>Descripcion</strong> </p>
+      <p>Una fragancia floral-afrutada para la mujer que abraza su glamour femenino. Úsala durante el día cuando quieras sentirte maravillosa o por la noche para enviar tu sensualidad a nuevos niveles de impresionante. La simplicidad rige el día con respecto a la pirámide del perfume. La nota superior son las bayas chinas. La nota de corazón es flor de melocotón. La nota de fondo es sándalo.</p>
+      <p> Este increíble chapoteo corporal de amigo es uno de los aromas más distintivos, la fórmula ha diseñado para dar un aroma aromático refrescante, también es un humectante natural para el cuerpo. Utiliza este maravilloso chapoteo en el cuerpo no solo significa buen olor, sino también una piel suave; contiene ingredientes naturales que hidrata y suaviza la piel, por lo que obtendrás una piel suave y frescura.</p>
+      <p>&nbsp;</p>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  <p><img src="perfume 3.jpg" width="370" height="360" alt="perfume 3" longdesc="perfume 3.jpg"></p>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <h1>Sobre este artículo      </h1>
+      <ul>
+        <li><strong>Este producto es de sujeción firme y acabado natural</strong></li>
+        <li><strong>Se recomienda para uso diario; por favor, guárdalo en un lugar fresco y seco</strong></li>
+        <li><strong>Bruma corporal de 8 onzas</strong></li>
+        <li><strong>Producto 100% de calidad</strong></li>
+      </ul>
+      <p>&nbsp;</p>
+      <p><strong>Descripcion</strong> </p>
+      <p>Descubre una fragancia afrutada con flores rosadas. Este increíble chapoteo corporal de amigo es uno de los aromas más distintivos, la fórmula ha diseñado para dar un aroma aromático refrescante, también un humectante natural para el cuerpo.</p>
+      <p> Utiliza este maravilloso chapoteo en el cuerpo no solo significa buen olor, sino también piel suave; contiene ingredientes naturales que hidrata y suaviza la piel, por lo que obtendrás una piel suave y frescura.</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <blockquote>
+                  <p><img src="perfume 4.jpg" width="370" height="360" alt="perfume 4" longdesc="perfume 4.jpg"></p>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <p>&nbsp;</p>
+      <h1>Sobre este artículo</h1>
+      <ul>
+        <li><strong>Fragancia. Una mezcla atemporal y femenina de bayas oscuras, jazmín de medianoche y ámbar rico.</strong></li>
+        <li><strong>Evoca la confianza natural y la belleza brillante desde el principio de tu día hasta la noche. Ya sea que salpique abundantemente o rocíe suavemente, te enamorarás en la primera niebla.</strong></li>
+        <li><strong>Nuestra botella cuidadosamente y bomba elaborada y sofisticada ofrece una gran cobertura mientras el acondicionamiento de niebla de aloe nutre la piel para la más ligera y refrescante senda hacia la fragancia.</strong></li>
+      </ul>
+      <p>&nbsp;</p>
+      <p><strong>Descripcion</strong><br>
+      Evoca la confianza natural y la belleza brillante desde el principio de tu día hasta la noche. Ya sea que salpique abundantemente o rocíe suavemente, te enamorarás en la primera niebla. Nuestra botella cuidadosamente y bomba elaborada y sofisticada ofrece una gran cobertura mientras el acondicionamiento de niebla de aloe nutre la piel para la más ligera y refrescante senda hacia la fragancia.</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <blockquote>
+                <p><img src="modelo joyas.jpg" width="426" height="639" alt="modelo joyas" longdesc="modelo joyas.jpg"></p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <p>Las mujeres siempre resaltamos por nuestra originalidad. Los <strong>aretes, cadenas y anillos</strong> se distinguen por sus diseños fuera de lo común, colores llamativos y elegancia para cualquier momento del día.</p>
+      <p>Aunque nos mantengamos ocupadas entre el trabajo y los estudios, las mujeres nunca dejamos de vernos bien y deslumbrar gracias a nuestros accesorios. Lo cierto es que hoy en día lo diferente es tendencia.</p>
+      <p>En nuestra <em>microempresa </em>siempre pensamos en lo mejor para nuestro público. Por eso, tenemos preparado para ti una variedad de aretes llamativos <strong>traidos con  cariño</strong> para que cautives todas las miradas.</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+<h1><strong>CONSEJOS PARA CUIDAR TUS PIEZAS</strong></h1>
+<p>&nbsp;</p>
+<ol>
+  <li>Evita el contacto con agentes oxidantes como perfumes, jabon o cremas directamente a las piezas.</li>
+  </ol>
+<p>&nbsp;</p>
+<p>2. Evita el roce con otros objetos que puedan dañarlas como monedas llaves y similares</p>
+<p>&nbsp;</p>
+<p>3. Conservalas seguras en su empaque original para mantener su brillo y color.</p>
+<p>&nbsp;</p>
+<p><strong>NOTA: TODAS NUESTRAS PIEZAS SON ELABORADAS EN ACERO INOXIDABLE Y BAÑO DE ORO.</strong></p>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <p>&nbsp;</p>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <p>&nbsp;</p>
+      <blockquote>
+        <p><img src="IAA.jpeg" width="758" height="407" alt="q" longdesc="file:///C|/Users/Keily/OneDrive/Documentos/Pagin web keily turcios/IAA.jpeg"></p>
+      </blockquote>
+      <p>&nbsp;</p>
+      <h2>¿Qué joyas puedo comprar en Orquideas HN?</h2>
+      <p>En nuestra tienda online <strong>disponemos de la más variada colección de joyas y cadenas</strong>, pendientes, anillos, collares y gargantillas, pulseras… Tenemos una gran selección de joyas de oro de 5 quilates, diamantes y plata de primera ley en joyas de mujer, joyas de hombre y joyas de niño.</p>
+      <p>Descubre las colecciones especiales de joyas para bautizo y joyas para primera comunión, con pulseras esclavas, sellos, medallas y conjuntos de comunión; joyas para bodas, con alianzas, anillos de compromiso y joyas de novia, además de otras joyas para más ocasiones señaladas, como cumpleaños, Día de la Madre o Día del Padre.</p>
+      <p>&nbsp;</p>
+      <p><img src="https://www.joyeriasanchez.com/modules/blockreassurance/views/img/img_perso/values-01.svg" alt="Calidad certificada Todas nuestras piezas van acompañadas de un certificado de calidad." width="39" height="36" loading="lazy">                 </p>
+      <p><strong>Calidad certificada</strong></p>
+      <p>Todas nuestras piezas van acompañadas</p>
+      <p>  de un certificado de calidad.</p>
+      <p>&nbsp;</p>
+      <p>En nuestra tienda en linea y mayorista queremos que todos nuestros clientes se sientan satisfechos con cada producto que les hacemos llegar ya que nuestro objetivo como microempresa es atraer al cliente y escuchar lo que quieren asi que nosotros tenemos gran variedad de cadenas, pulseras, aretes, anillos, perfumes etc para que ellos puedan darse el gusto de escoger el que prefieran. </p>
+      <p><em><strong>&ldquo;No fue facil comenzar con este negocio pero gracias a nuestros clientes y a Dios vamos creciendo poco a poco. Ser emprendedor es para valientes!&rdquo;</strong></em></p>
+      <p>&nbsp;</p>
+      <p>Nuestra mayor comunicacion que tenemos con los clientes es por medio de nuestro instagran que se los dejamos en el link de arriba.</p>
+      <p>&nbsp;</p>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <p><img src="medios de pago.jpg" width="473" height="819" longdesc="file:///C|/Users/Keily/OneDrive/Documentos/Pagin web keily turcios/Autoconduccion.png"></p>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+    </section>
+    <section></section>
+    <section> </section>
+  <!-- end .content --></article>
+  <footer>
+    <p>Creado por Keily Turcios</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+(2022-2023)  </footer>
+<!-- end .container --></div>
+</body>
+</html>
